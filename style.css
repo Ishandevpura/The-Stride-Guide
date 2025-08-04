@@ -1,0 +1,230 @@
+
+body{
+  font-family: 'Rajdhani', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ADD8E6;
+  text-align: center;
+}
+
+.logo{
+    width: auto;
+    height: 200px;
+    float: center;
+    padding-top: 20px;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
+   font-family: 'Orbitron', sans-serif;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+.nav-links a:hover {
+  background-color: #555;
+}
+.nav-links .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+.nav-links .menu {
+  display: flex;
+  gap: 15px;
+}
+.nav-links .menu a {
+  font-size: 18px;
+}  
+h1 {
+  font-size: 36px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+#beg_quest {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.answers label {
+  font-weight: normal;
+}
+
+#button {
+  background-color: darkblue;
+  color: white;
+  border: 5px;
+  border-radius: 20px;
+  box-shadow: 3px 3px gray;
+  padding: 5px 15px;
+  min-height: 30px;
+  min-width: 120px;
+  font-family: 'Rajdhani';
+}
+
+#button:hover {
+  background-color: blue;
+  transition: 0.2s;
+}
+
+#button:focus {
+  outline-color: transparent;
+  outline-style: solid;
+  box-shadow: 0 0 0 4px lightblue;
+  transition:0.2s;
+}
+#button:active {
+  background-color: rgb(8, 149, 196);
+}
+.answers {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=radio] {
+  border: 0px;
+  width: 100%;
+  height: 2em;
+}
+
+#result {
+  font-weight: bold;
+}
+
+#endorphin {
+  text-align:left;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#Metaspeed {
+  text-align:right;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.shoe-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px; 
+  margin: 30px 0;
+}
+
+.shoe-banner-text {
+  text-align: center;
+  max-width: 400px;
+}
+
+.howto {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.brandbutton {
+  width: 100%;
+  max-width: 500px;
+  min-width: 180px;
+  box-sizing: border-box;
+  background-color: darkblue;
+  color: white;
+  border: 5px;
+  border-radius: 20px;
+  box-shadow: 3px 3px gray;
+  padding: 5px 15px;
+  min-height: 50px;
+  font-family: 'Rajdhani';
+  font-size: 22px;
+}
+
+.brandbutton:hover {
+  background-color: blue;
+  transition: 0.2s;
+}
+
+.brandbutton:focus {
+  outline-color: transparent;
+  outline-style: solid;
+  box-shadow: 0 0 0 4px lightblue;
+  transition:0.2s;
+}
+.brandbutton:active {
+  background-color: rgb(8, 149, 196);
+}
+
+.brandbutton-group { 
+  display: grid;
+  grid-template-columns: 1;
+  gap: 15px;
+  justify-items: center;
+}
+
+.brandbutton-group .brandbutton:nth-child(5) { 
+  grid-column: 1 / span 2;
+  justify-self: center;
+}
+
+#topshoesbody {
+  margin-right: 100px;
+  margin-left: 100px;
+}
+
+.main {
+  margin-right:200px;
+  margin-left:200px;
+}
+
+footer {
+  background-color: #222;  /* Dark footer background */
+  padding: 20px 0;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #ccc;
+}
+
+.footer-nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0 0 15px 0;
+  list-style: none;
+}
+
+.footer-nav-links li {
+  margin: 0;
+}
+
+.footer-nav-links a {
+  color: #ccc;
+  text-decoration: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+}
+
+.footer-nav-links a:hover {
+  background-color: #444;
+  color: white;
+}
+
+.footer-copy {
+  font-size: 12px;
+  opacity: 0.7;
+  margin: 0;
+}
