@@ -9,11 +9,10 @@ body{
 
 .logo{
     width: 100%;
-  max-width: 400px; /* or 200px if you prefer */
+  max-width: 400px; 
   height: auto;
   display: block;
   margin: 20px auto 0 auto;
-  /* Remove float: center; (not valid) */
   padding-top: 20px;
 }
 
@@ -46,7 +45,7 @@ body{
   font-size: 18px;
 }
 
-/* Responsive styles */
+
 @media (max-width: 600px) {
   .nav-links {
     flex-direction: column;
