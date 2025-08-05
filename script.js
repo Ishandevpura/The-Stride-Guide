@@ -553,8 +553,8 @@ if (top3.length > 0 && top3[0].score > 0) {
         const description = document.createElement("p");
         description.innerText = `${shoe.description}`;
         description.style.marginTop = index === 0 ? "0" : "20px";
-        description.style.marginLeft = "200px";
-        description.style.marginRight = "200px";
+        description.style.marginLeft = "50px";
+        description.style.marginRight = "50px";
         resultContainer.appendChild(description);
 
         //horizontal line
