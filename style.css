@@ -8,10 +8,13 @@ body{
 }
 
 .logo{
-    width: auto;
-    height: 200px;
-    float: center;
-    padding-top: 20px;
+    width: 100%;
+  max-width: 400px; /* or 200px if you prefer */
+  height: auto;
+  display: block;
+  margin: 20px auto 0 auto;
+  /* Remove float: center; (not valid) */
+  padding-top: 20px;
 }
 
 .nav-links {
