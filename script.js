@@ -425,7 +425,7 @@ const Invincible = {
     name: "Nike Invincible Run 3",
     image: "Images/Invincible.png",
     link: "https://www.runningwarehouse.com/Nike_Invincible_Run_3/descpage-NZIR3MC.html",
-    description: "s",
+    description: "This is Nike's recovery shoe for those easy miles. The midsole is made out of the lightweight ZoomX foam to provide maxium cushion. Although it fits a wider foot and discontinued, if offers a very soft ride, and it is priced at $180.",
     numberOfMiles: "25+",
     typeOfRunning: "longeasyruns",
     typeOfSurface:"road",
