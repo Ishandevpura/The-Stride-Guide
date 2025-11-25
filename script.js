@@ -435,7 +435,17 @@ const Invincible = {
     historyOfInjury: "yes"
 
 }
+ 
 
+const weights = {
+    numberOfMiles: 1,
+    typeOfRunning: 3,
+    typeOfSurface: 1,
+    preferredCushion:2,
+    budget:5,
+    footstrike:1,
+    historyOfInjury:2
+}
 
 //this defines a getAnswer function for use in the next lines of code.
 function getAnswer(questionName) {
@@ -504,18 +514,28 @@ button.addEventListener('click', function generateShoe() {
 resultContainer.innerHTML = "";
 
 // Create a scored list of shoes
-const scoredShoes = shoes.map(shoe => {
+function calculateScore(shoe, userInput)
+{
     let score = 0;
-    for (let key in userInput) {
-        if (shoe[key] === userInput[key]) {
-            score++;
+
+    for (let key in userInput) 
+    {
+        if (shoe[key] == userInput[key])
+        {
+            score += weights[key] || 1;
         }
     }
-    return { ...shoe, score };
-});
+    return score;
+}
+    //score and rank shoes
+    const scoredShoes = shoes
+    .map(shoe => ({
+        ...shoe,
+        score: calculateScore(shoe, userInput)
+    }))
+    .sort((a, b) => b.score - a.score);
 
-// Sort by score descending
-scoredShoes.sort((a, b) => b.score - a.score);
+
 
 // Take top 3
 const top3 = scoredShoes.slice(0, 3);
