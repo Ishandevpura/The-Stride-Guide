@@ -1,5 +1,75 @@
 
 //This is creating a variable for all of the shoes with each of their properties.
+const EndorphinXC = {
+    name: "Saucony Endorphin XC",
+    image: "Images/EndorphinXC.png",
+    link: "https://www.runningwarehouse.com/Saucony_Endorphin_XC_Spikes/descpage-SAEXC.html?srsltid=AfmBOopoCHfl5NfCvd5xO57H99QVBHdYD1kv8FEJYwt-CiLQ6cs2nNra",
+    description: "The Endorphin XC serves as Saucony's elite spike for the rough terrains of cross country races, with a 3/4 carbon plate in its midsole along with Saucony's IncrediRun foam. It is priced at $190.",
+    numberOfMiles: "10-25",
+    typeOfRunning: "racing",
+    typeOfSurface:"trail",
+    preferredCushion: "responsive",
+    budget: "under200",
+    footStrike: "midfoot",
+    historyOfInjury: "no",
+};
+
+const Glycerin = {
+    name: "Brooks Glycerin Max 2",
+    image: "Images/BrooksGlycerinMax.png",
+    link: "https://www.runningwarehouse.com/Brooks_Glycerin_Max_2/descpage-BGM2M03.html",
+    description: "The Glycerin Max serves as Brook's max cushion daily trainer made for those easy days. It features nitrogen infused foams, and is priced at $199.95.",
+    numberOfMiles: "25+",
+    typeOfRunning: "longeasyruns",
+    typeOfSurface:"road",
+    preferredCushion: "soft",
+    budget: "under200",
+    footStrike: "heel",
+    historyOfInjury: "yes",
+};
+
+const VomeroPlus = {
+    name: "Nike Vomero Plus",
+    image: "Images/NikeVomeroPlus.png",
+    link: "https://www.runningwarehouse.com/Nike_Vomero_Plus/descpage-NVPM2.html",
+    description: "The vomero plus is Nike's max cushion daily trainer, made for higher mileage runners to deliver less impact on their legs. It features ZoomX superfoam in its midsole and is priced at $180. ",
+    numberOfMiles: "25+",
+    typeOfRunning: "allrounder",
+    typeOfSurface:"road",
+    preferredCushion: "soft",
+    budget: "under200",
+    footStrike: "midfoot",
+    historyOfInjury: "no",
+};
+
+const ONcloudmonster = {
+    name: "ON Cloudmonster",
+    image: "Images/ONCloudmonster.png",
+    link: "https://www.runningwarehouse.com/On_Cloudmonster_2/descpage-ON2CMM0.html",
+    description: "The cloudmonster is ON's max cushion daily trainer fit for all kinds of training. It features a Helion foam, and is priced at $180.",
+    numberOfMiles: "25+",
+    typeOfRunning: "allrounder",
+    typeOfSurface:"road",
+    preferredCushion: "soft",
+    budget: "under200",
+    footStrike: "midfoot",
+    historyOfInjury: "no",
+};
+
+const Mach6 = {
+    name: "Hoka Mach 6",
+    image: "Images/HokaMach6.png",
+    link: "https://www.runningwarehouse.com/HOKA_Mach_6/descpage-HO6MM00.html",
+    description: "the Mach 6 is Hoka's performance trainer that can handle anything from easy runs to uptempo sessions. It features SCF EVA foam, and is priced at $140.",
+    numberOfMiles: "10-25",
+    typeOfRunning: "allrounder",
+    typeOfSurface:"road",
+    preferredCushion: "responsive",
+    budget: "under150",
+    footStrike: "midfoot",
+    historyOfInjury: "no",
+};
+
 
 const MagicSpeed = {
     name: "Asics Magic Speed 4",
@@ -439,11 +509,11 @@ const Invincible = {
 
 const weights = {
     numberOfMiles: 1,
-    typeOfRunning: 3,
-    typeOfSurface: 1,
+    typeOfRunning: 4,
+    typeOfSurface: 3,
     preferredCushion:2,
-    budget:5,
-    footstrike:1,
+    budget:7,
+    footstrike:2,
     historyOfInjury:2
 }
 
@@ -485,14 +555,18 @@ button.addEventListener('click', function generateShoe() {
             EndorphinElite,
             EndorphinPro,
             EndorphinSpeed5,
+            EndorphinXC,
             GelNimbus27,
+            Glycerin,
             Invincible,
+            Mach6,
             MagicSpeed,
             Metaspeed,
             Morev5,
             NewBalance1080,
             NikePegasus41,
             Novablast,
+            ONcloudmonster,
             RebelV5,
             SCElite,
             SCTrainer,
@@ -505,6 +579,7 @@ button.addEventListener('click', function generateShoe() {
             Vaporfly4,
             Victory2,
             Vomero,
+            VomeroPlus,
             Zoomfly
         ];
 
