@@ -873,8 +873,8 @@ button.addEventListener("click", function generateShoe() {
         ? remainingShoes[0].passedFilters.length
         : 0;
 
-    // Minimum of 5 filters required
-    if (filtersPassed < 5) {
+    // Minimum of 3 filters required
+    if (filtersPassed < 4) {
         resultContainer.innerText =
             "Sorry, we couldn't confidently recommend a shoe based on your answers.";
         return;
