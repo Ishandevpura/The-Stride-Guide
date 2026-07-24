@@ -741,25 +741,16 @@ const RebelTrail = {
 };
  
 
-const weights = {
-    numberOfMiles: 1,
-    typeOfRunning: 4,
-    typeOfSurface: 3,
-    preferredCushion:2,
-    budget:7,
-    footstrike:2,
-    historyOfInjury:2
-}
-
-//this defines a getAnswer function for use in the next lines of code.
+// This defines a getAnswer function.
 function getAnswer(questionName) {
     const selected = document.querySelector(`input[name="${questionName}"]:checked`);
-    return selected ? selected.value : null;}
+    return selected ? selected.value : null;
+}
 
-    //This finds the button in the html
-const button = document.querySelector('#button')
-//When the button is clicked, the generate shoe function is run, collecting the user inputs of the questions.
-button.addEventListener('click', function generateShoe() {
+const button = document.querySelector("#button");
+
+button.addEventListener("click", function generateShoe() {
+
     const userInput = {
         numberOfMiles: getAnswer("question1"),
         typeOfRunning: getAnswer("question2"),
@@ -770,105 +761,142 @@ button.addEventListener('click', function generateShoe() {
         historyOfInjury: getAnswer("question7")
     };
 
-        const resultContainer = document.querySelector('#result');
+    const resultContainer = document.querySelector("#result");
+
+    // Make sure every question is answered
     for (let key in userInput) {
         if (!userInput[key]) {
             resultContainer.innerText = "Please answer all questions before submitting.";
             return;
         }
     }
-    //This process matches the shoes with user answers - the shoe with the most amount of questions matched to it will be shown
+
     const shoes = [
-            EndorphinXC, 
-            EndorphinPro, 
-            EndorphinElite, 
-            EndorphinSpeed5, 
-            Triumph, SauconyRide, 
-            EndorphinAzura, 
-            Glycerin, 
-            BrooksGhost, 
-            Glycerin23, 
-            GlycerinFlex, 
-            HyperionMax3, 
-            VomeroPlus, 
-            Victory2, 
-            Drag2, 
-            DragXC, 
-            Vomero, 
-            Streakfly, 
-            Zoomfly, 
-            Vaporfly4, 
-            NikePegasus41, 
-            PegasusPremium, 
-            StructurePlus, 
-            ONcloudmonster, 
-            Cloudspike10k, 
-            CloudboomStrike2, 
-            CloudmonsterHyper, 
-            Mach6, 
-            CieloX1, 
-            MagicSpeed, 
-            GelNimbus27, 
-            Superblast, 
-            Novablast, 
-            Metaspeed, 
-            Megablast, 
-            GelCumulus28, 
-            Boston, 
-            TakumiSen, 
-            AdiosPro, 
-            Supernova, 
-            Adizero, 
-            SCElite, 
-            Morev5, 
-            RebelV5, 
-            NewBalance1080, 
-            RebelTrail
-        ];
+        EndorphinXC,
+        EndorphinPro,
+        EndorphinElite,
+        EndorphinSpeed5,
+        Triumph,
+        SauconyRide,
+        EndorphinAzura,
+        Glycerin,
+        BrooksGhost,
+        Glycerin23,
+        GlycerinFlex,
+        HyperionMax3,
+        VomeroPlus,
+        Victory2,
+        Drag2,
+        DragXC,
+        Vomero,
+        Streakfly,
+        Zoomfly,
+        Vaporfly4,
+        NikePegasus41,
+        PegasusPremium,
+        StructurePlus,
+        ONcloudmonster,
+        Cloudspike10k,
+        CloudboomStrike2,
+        CloudmonsterHyper,
+        Mach6,
+        CieloX1,
+        MagicSpeed,
+        GelNimbus27,
+        Superblast,
+        Novablast,
+        Metaspeed,
+        Megablast,
+        GelCumulus28,
+        Boston,
+        TakumiSen,
+        AdiosPro,
+        Supernova,
+        Adizero,
+        SCElite,
+        Morev5,
+        RebelV5,
+        NewBalance1080,
+        RebelTrail
+    ];
 
+    resultContainer.innerHTML = "";
 
+    const filterOrder = [
+        "budget",
+        "typeOfRunning",
+        "preferredCushion",
+        "typeOfSurface",
+        "footStrike",
+        "historyOfInjury",
+        "numberOfMiles"
+    ];
 
-// Clear previous result
-resultContainer.innerHTML = "";
+    const filterLabels = {
+        budget: "Budget",
+        typeOfRunning: "Type of Running",
+        preferredCushion: "Preferred Cushion",
+        typeOfSurface: "Running Surface",
+        footStrike: "Foot Strike",
+        historyOfInjury: "History of Injury",
+        numberOfMiles: "Weekly Mileage"
+    };
 
-// Create a scored list of shoes
-function calculateScore(shoe, userInput)
-{
-    let score = 0;
+    // Store each remaining shoe with its matched filters
+    let remainingShoes = shoes.map(shoe => ({
+        shoe,
+        passedFilters: []
+    }));
 
-    for (let key in userInput) 
-    {
-        if (shoe[key] == userInput[key])
-        {
-            score += weights[key] || 1;
+    // Progressive filtering
+    for (const filter of filterOrder) {
+
+        const survivors = remainingShoes.filter(item =>
+            item.shoe[filter] == userInput[filter]
+        );
+
+        // Stop if the next filter would remove every shoe
+        if (survivors.length === 0) {
+            break;
         }
+
+        // Record that these shoes passed this filter
+        survivors.forEach(item => {
+            item.passedFilters.push(filter);
+        });
+
+        remainingShoes = survivors;
     }
-    return score;
-}
-    //score and rank shoes
-    const scoredShoes = shoes
-    .map(shoe => ({
-        ...shoe,
-        score: calculateScore(shoe, userInput)
-    }))
-    .sort((a, b) => b.score - a.score);
 
+    // How many filters did the surviving shoes pass?
+    const filtersPassed = remainingShoes.length > 0
+        ? remainingShoes[0].passedFilters.length
+        : 0;
 
+    // Minimum of 5 filters required
+    if (filtersPassed < 5) {
+        resultContainer.innerText =
+            "Sorry, we couldn't confidently recommend a shoe based on your answers.";
+        return;
+    }
 
-// Take top 3
-const top3 = scoredShoes.slice(0, 3);
+    const matchPercent = Math.round(
+        (filtersPassed / filterOrder.length) * 100
+    );
 
-// Display top 3 shoes
-if (top3.length > 0 && top3[0].score > 0) {
-    top3.forEach((shoe, index) => {
-        // Title
-        const title = document.createElement("p");
-        title.innerText = `#${index + 1}: ${shoe.name}`;
-        title.style.fontWeight = "bold";
-        title.style.marginTop = index === 0 ? "0" : "20px";
+    // Display every remaining shoe
+    remainingShoes.forEach(item => {
+
+        const shoe = item.shoe;
+
+        const title = document.createElement("h2");
+        title.innerText = shoe.name;
         resultContainer.appendChild(title);
 
-        // Image
+        const percent = document.createElement("p");
+        percent.innerHTML = `<strong>${matchPercent}% Match</strong>`;
+        resultContainer.appendChild(percent);
+
         const image = document.createElement("img");
         image.src = shoe.image;
         image.alt = shoe.name;
@@ -877,7 +905,6 @@ if (top3.length > 0 && top3[0].score > 0) {
         image.style.marginTop = "10px";
         resultContainer.appendChild(image);
 
-        // Link
         const link = document.createElement("a");
         link.href = shoe.link;
         link.target = "_blank";
@@ -887,19 +914,23 @@ if (top3.length > 0 && top3[0].score > 0) {
         link.style.color = "#1a73e8";
         resultContainer.appendChild(link);
 
-        //Description
         const description = document.createElement("p");
-        description.innerText = `${shoe.description}`;
-        description.style.marginTop = index === 0 ? "0" : "20px";
+        description.innerText = shoe.description;
         description.style.marginLeft = "50px";
         description.style.marginRight = "50px";
         resultContainer.appendChild(description);
 
-        //horizontal line
+        const matched = document.createElement("p");
+        matched.innerHTML =
+            "<strong>Matched Filters:</strong><br>" +
+            item.passedFilters
+                .map(filter => `✅ ${filterLabels[filter]}`)
+                .join("<br>");
+
+        resultContainer.appendChild(matched);
+
         const line = document.createElement("hr");
         resultContainer.appendChild(line);
     });
-} else {
-    resultContainer.innerText = "Sorry, we were not able to find a shoe recommendation for you.";
-}
-    });
+
+});
