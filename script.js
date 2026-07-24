@@ -747,6 +747,7 @@ function getAnswer(questionName) {
     return selected ? selected.value : null;
 }
 
+// Button
 const button = document.querySelector("#button");
 
 button.addEventListener("click", function generateShoe() {
@@ -763,14 +764,16 @@ button.addEventListener("click", function generateShoe() {
 
     const resultContainer = document.querySelector("#result");
 
-    // Make sure every question is answered
+    // Check every question has been answered
     for (let key in userInput) {
         if (!userInput[key]) {
-            resultContainer.innerText = "Please answer all questions before submitting.";
+            resultContainer.innerText =
+                "Please answer all questions before submitting.";
             return;
         }
     }
 
+    // Shoe Database
     const shoes = [
         EndorphinXC,
         EndorphinPro,
@@ -822,6 +825,7 @@ button.addEventListener("click", function generateShoe() {
 
     resultContainer.innerHTML = "";
 
+    // Filter priority
     const filterOrder = [
         "budget",
         "typeOfRunning",
@@ -832,6 +836,7 @@ button.addEventListener("click", function generateShoe() {
         "numberOfMiles"
     ];
 
+    // Nice labels
     const filterLabels = {
         budget: "Budget",
         typeOfRunning: "Type of Running",
@@ -842,41 +847,46 @@ button.addEventListener("click", function generateShoe() {
         numberOfMiles: "Weekly Mileage"
     };
 
-    // Store each remaining shoe with its matched filters
+    // Start with every shoe
     let remainingShoes = shoes.map(shoe => ({
         shoe,
         passedFilters: []
     }));
 
-    // Progressive filtering
+    // Save the last successful filter stage
+    let lastSuccessfulShoes = [...remainingShoes];
+
+    // Apply filters
     for (const filter of filterOrder) {
 
         const survivors = remainingShoes.filter(item =>
             item.shoe[filter] == userInput[filter]
         );
 
-        // Stop if the next filter would remove every shoe
+        // If this filter removes everyone,
+        // stop and use the previous successful stage.
         if (survivors.length === 0) {
             break;
         }
 
-        // Record that these shoes passed this filter
         survivors.forEach(item => {
-            item.passedFilters.push(filter);
+            item.passedFilters = [...item.passedFilters, filter];
         });
 
         remainingShoes = survivors;
+        lastSuccessfulShoes = [...remainingShoes];
     }
 
-    // How many filters did the surviving shoes pass?
-    const filtersPassed = remainingShoes.length > 0
+    remainingShoes = lastSuccessfulShoes;
+
+    const filtersPassed = remainingShoes.length
         ? remainingShoes[0].passedFilters.length
         : 0;
 
-    // Minimum of 3 filters required
+    // Minimum filters required
     if (filtersPassed < 4) {
-        resultContainer.innerText =
-            "Sorry, we couldn't confidently recommend a shoe based on your answers.";
+        resultContainer.innerHTML =
+            "<p>Sorry, we couldn't confidently recommend a shoe based on your answers.</p>";
         return;
     }
 
@@ -922,7 +932,7 @@ button.addEventListener("click", function generateShoe() {
 
         const matched = document.createElement("p");
         matched.innerHTML =
-            "<strong>Matched Filters:</strong><br>" +
+            "<strong>Matched Filters</strong><br>" +
             item.passedFilters
                 .map(filter => `✅ ${filterLabels[filter]}`)
                 .join("<br>");
@@ -931,6 +941,7 @@ button.addEventListener("click", function generateShoe() {
 
         const line = document.createElement("hr");
         resultContainer.appendChild(line);
+
     });
 
 });
