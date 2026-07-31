@@ -243,7 +243,7 @@ const Victory2 = {
     name: "Nike Zoom Victory 2 Spikes", // was Zoom Victory 2 Spikes -- please verify, official naming was unclear at time of research
     image: "Images/ZoomVictory2.png",
     link: "https://www.runningwarehouse.com/Nike_Zoom_Victory_2_Spikes/descpage-N2ZVSU9.html",
-    description: "Nike's mid distance spike, designed for key races like the 800, 400, and 1600 meters. Carbon plate with an Air Zoom unit and ZoomX foam for maximum propulsion. Please double check this is the correct current version before publishing — naming was ambiguous in research.",
+    description: "Nike's mid distance spike, designed for key races like the 800, 400, and 1600 meters. Carbon plate with an Air Zoom unit and ZoomX foam for maximum propulsion.",
     numberOfMiles: ["0-10", "10-25"],
     typeOfRunning: ["racing"],
     typeOfSurface: ["track"],
